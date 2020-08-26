@@ -1,6 +1,5 @@
 import axios from "axios";
-import axiosWithAuth from "../../axios/index";
-import { Types } from "mongoose";
+import axiosWithAuth from "../../utils/axiosWithAuth";
 
 export const SIGN_UP = "SIGN_UP";
 export const SIGN_UP_ERROR = "SIGN_UP_ERROR";
@@ -16,13 +15,14 @@ export const FETCH_USER_SUCESSFULLY = "FETCH_USER_SUCESSFULLY";
 const url = "http://localhost:3000/api/";
 
 export const register = (props, values) => (dispatch) => {
-  dispatch({ type: types.SIGN_UP });
-  dispatch({ type: types.LOGIN_START });
+  dispatch({ type: SIGN_UP });
+  dispatch({ type: LOGIN_START });
   axios.post(`${url}auth/register`, values)
   .then(res => {
-    dispatch({ type: types.SIGN_UP_SUCCESSFUL });
+    dispatch({ type: SIGN_UP_SUCCESSFUL });
+    console.log('response', res)
     dispatch({ 
-      type: types.LOGIN_SUCCESSFUL,
+      type: LOGIN_SUCCESSFUL,
       payload: res.data.user,
       message: res.data.messsage
     });
@@ -31,18 +31,18 @@ export const register = (props, values) => (dispatch) => {
   })
   .catch(err => {
     dispatch({
-      type: types.SIGN_UP_ERROR,
+      type: SIGN_UP_ERROR,
       payload: err.response.data.message,
     });
   });
 };
 
 export const login = (props, values) => dispatch => {
-  dispatch({ type: types.LOGIN_START});
+  dispatch({ type: LOGIN_START});
   axios.post(`${url}auth/login`, values)
   .then(res => {
     dispatch({
-      type: types.LOGIN_SUCCESSFUL,
+      type: LOGIN_SUCCESSFUL,
       payload: res.data.user,
       message: res.data.message,
     });
@@ -51,7 +51,7 @@ export const login = (props, values) => dispatch => {
   })
   .catch(err => {
     dispatch({
-      type: types.LOGIN_ERROR,
+      type: LOGIN_ERROR,
       payload: err.data,
     });
   });
@@ -60,5 +60,5 @@ export const login = (props, values) => dispatch => {
 export const logout = props => {
   localStorage.clear();
   window.location.reload();
-  return { type: types.LOGOUT};
+  return { type: LOGOUT};
 };

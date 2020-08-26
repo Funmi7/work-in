@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export default function withAuth() {
-  const payload = localStorage.getItem('payload');
+export default function axioswithAuth() {
+  const token = localStorage.getItem('token');
 
-  const instance = axios.create({
+  const axiosInstance = axios.create({
     headers: {
       'Content-Type': 'application/json',
       Authorization: token,

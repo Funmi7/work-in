@@ -4,9 +4,10 @@ import "./index.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import { provider, Provider } from "react-redux";
 import thunk from "redux-thunk";
+import logger from 'redux-logger';
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { compose, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from "./state/reducers";
 
 function saveToLocalStorage(state) {
@@ -32,7 +33,7 @@ const persistedState = loadFromLocalStorage();
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = creaateStore(
+const store = createStore(
   rootReducer,
   persistedState,
   composeEnhancers(applyMiddleware(logger, thunk))
