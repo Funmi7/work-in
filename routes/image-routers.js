@@ -1,37 +1,47 @@
 const express = require("express");
 const router = express.Router();
-const Images = require("../models/image-models");
+const Image = require("../models/image-models");
 const multer = require("multer");
-const GridFsStorage = require("multer-gridfs-storage");
+const { Router } = require("express");
 
+require("dotenv/config");
 
-require('dotenv/config');
-
-const storage = new GridFsStorage({
-  url: process.env.DB_CONNECTION,
-  file: (req, file) => {
-    return new Promise((resolve, reject) => {
-      crypto.randomBytes(16, (err, buf) => {
-        if (err) {
-          return reject(err)
-        }
-        const filename = file.originalname
-        const fileInfo = {
-          filename: filename,
-          bucketName: 'uploads',
-        }
-        resolve(fileInfo)
-      })
-    })
+const upload = multer({
+  limits: {
+    fileSize: 500000,
   },
-})
+  fileFilter(req, file, cb) {
+    if (!file.originalname.match(/\.(jpeg|jpg|png)$/)) {
+      cb(new Error("only upload files with jpg or jpeg format."));
+    }
+    cb(undefined, true);
+  },
+});
 
+router.post(
+  "/",
+  upload.single("image"),
+  async (req, res) => {
+    try {
+      const image = new Image(req.body);
+      const file = req.file.buffer;
+      image.image = file;
 
-const upload = multer({ storage }); 
-
-router.post("/", upload.single('image'), (req,res) => {
-  res.status(200).send()
-  if (err) throw err
-})
+      await image.save();
+      res.status(201).send({ _id: image._id });
+    } catch (error) {
+      res.status(500).send({
+        upload_error: "Error while uploading file.... Try again later.",
+      });
+    }
+  },
+  (error, req, res, next) => {
+    if (error) {
+      res.status(500).send({
+        upload_error: error.message,
+      });
+    }
+  }
+);
 
 module.exports = router;
