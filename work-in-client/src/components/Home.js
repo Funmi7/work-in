@@ -65,17 +65,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(HomePage);
-
-// const mapStateToProps = state => {
-//   return {
-//     image: state.imagesReducer,
-//   };
-// };
-
-// export default withRouter(
-//   connect(mapStateToProps, {
-//     addImage
-//   })(HomePage)
-// );
-
-// export default HomePage;

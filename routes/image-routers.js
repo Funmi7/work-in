@@ -31,7 +31,7 @@ const upload = multer({
     fileSize: 500000,
   },
   fileFilter(req, file, cb) {
-    if (!file.originalname.match(/\.(jpeg|jpg|png)$/)) {
+    if (!file.originalname.match(/\.(jpeg|jpg)$/)) {
       cb(new Error("only upload files with jpg or jpeg format."));
     }
     cb(undefined, true);
@@ -63,5 +63,24 @@ router.post(
     }
   }
 );
+
+router.get("/", async (req, res) => {
+  try {
+    const images = await Image.find({});
+    res.send(images);
+  } catch (error) {
+    res.status(500).send({ get_error: "Error while getting list of images" });
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  try {
+    const result = await Image.findById(req.params.id);
+    res.set("Content-Type", "image/jpeg");
+    res.send(result.image);
+  } catch (error) {
+    res.status(400).send({ get_error: "Error while getting images" });
+  }
+});
 
 module.exports = router;
