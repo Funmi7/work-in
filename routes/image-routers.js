@@ -1,10 +1,30 @@
 const express = require("express");
 const router = express.Router();
 const Image = require("../models/image-models");
+const User = require("../models/users");
 const multer = require("multer");
 const { Router } = require("express");
-
+const restricted = require("../auth/authenticate-middleware");
 require("dotenv/config");
+
+function validateUserId(req, res, next) {
+  User.findById(req.body.params)
+    .then((user) => {
+      if (user) {
+        req.user = user;
+        next();
+      } else {
+        res.status(400).json({
+          message: "Inavlid user id",
+        });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({
+        error: `Can't load the user id ${error.message}`,
+      });
+    });
+}
 
 const upload = multer({
   limits: {

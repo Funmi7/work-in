@@ -1,6 +1,13 @@
 const mongoose = require("mongoose");
 
 const ImageSchema = mongoose.Schema({
+  // title: {
+  //   type: String,
+  //   required: true,
+  // },
+  // description: {
+  //   type: String,
+  // },
   image: {
     type: Buffer,
   },
@@ -11,6 +18,5 @@ ImageSchema.methods.toJSON = function () {
   delete result.image;
   return result;
 };
-
 
 module.exports = mongoose.model("Image", ImageSchema);
