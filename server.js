@@ -24,7 +24,7 @@ server.get("/", (req, res) => {
 
 
 mongoose.connect(
-  process.env.DB_CONNECTION,
+  process.env.MONGODB_URL,
   { useNewUrlParser: true },
   () => {
     console.log("Connected to DB!");
