@@ -12,5 +12,4 @@ ImageSchema.methods.toJSON = function () {
   return result;
 };
 
-
 module.exports = mongoose.model("Image", ImageSchema);
