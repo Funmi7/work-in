@@ -5,34 +5,57 @@ import { connect } from "react-redux";
 import withAuth from "../../utils/axiosWithAuth";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
-
+import { FormStyled } from './FormStyle';
 import { register } from "../../state/actions/authenticationActions";
+
+
 
 const signUpForm = ({ userReducer, isSubmitting, errors, touched }) => {
   return (
-    <>
+    <FormStyled>
       <h1>Sign Up Here</h1>
-      <Form>
+      <Form className="signup-form">
         <div>
-          <Field type="text" name="name" placeholder="Full Name" />
+          <Field
+            className="input"
+            type="text"
+            name="name"
+            placeholder="Full Name"
+          />
           {errors.name && touched.name && <div>{errors.name}</div>}
         </div>
         <div>
-          <Field type="text" name="user_name" placeholder="Username" />
+          <Field
+            className="input"
+            type="text"
+            name="user_name"
+            placeholder="Username"
+          />
           {errors.user_name && touched.user_name && (
             <div>{errors.user_name}</div>
           )}
         </div>
         <div>
-          <Field type="email" name="email" placeholder="Email" />
+          <Field
+            className="input"
+            type="email"
+            name="email"
+            placeholder="Email"
+          />
           {errors.email && touched.email && <div>{errors.email}</div>}
         </div>
         <div>
-          <Field type="password" name="password" placeholder="Password" />
+          <Field
+            className="input"
+            type="password"
+            name="password"
+            placeholder="Password"
+          />
           {errors.password && touched.password && <div>{errors.password}</div>}
         </div>
         <div>
           <Field
+            className="input"
             type="password"
             name="confirm_password"
             placeholder="Confirm Password"
@@ -47,9 +70,9 @@ const signUpForm = ({ userReducer, isSubmitting, errors, touched }) => {
           </button>
         </div>
         <p>Already have an account?</p>
-      <Link to="/login">Sign in here</Link>
+        <Link to="/login">Sign in here</Link>
       </Form>
-    </>
+    </FormStyled>
   );
 };
 

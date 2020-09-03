@@ -3,8 +3,27 @@ import { withRouter } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { addImage } from "../../state/actions/imagesActions";
+import styled from "styled-components";
 
-const UploadImage = ({ errors, dispatch }) => {
+const UploadFormStyled = styled.div`
+  font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5rem;
+.upload {
+  margin-top: 2rem;
+}
+  button {
+    width: 25rem;
+    padding: 1rem 2rem 1rem 2rem;
+    font-size: 1.4rem;
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+  }
+`
+
+const UploadImage = ({ errors, dispatch, props }) => {
   const [image, setImage] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -30,7 +49,7 @@ const UploadImage = ({ errors, dispatch }) => {
   };
 
   return (
-    <>
+    <UploadFormStyled>
       {errorMessage && errorMessage.upload_error ? (
         <p>{errorMessage.upload_error}</p>
       ) : (
@@ -44,13 +63,13 @@ const UploadImage = ({ errors, dispatch }) => {
       >
         <Form.Group>
           <Form.Label>Upload an image</Form.Label>
-          <Form.Control type="file" name="image" onChange={handleChange} />
+          <Form.Control  className="upload" type="file" name="image" onChange={handleChange} />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button className="button" variant="primary" type="submit">
           Upload
         </Button>
       </Form>
-    </>
+    </UploadFormStyled>
   );
 };
 

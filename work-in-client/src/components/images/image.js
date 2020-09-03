@@ -17,7 +17,7 @@ const ImageStyled = styled.div`
 const Image = ({ id }) => {
   return (
     <ImageStyled>
-      <img src={`http://localhost:3000/images/${id}`} alt="Photo" />
+      <img src={`https://random-picture-gallery.herokuapp.com/images/${id}`} alt="Photo" />
     </ImageStyled>
   );
 };

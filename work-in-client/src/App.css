@@ -44,3 +44,12 @@
 html {
   font-size: 62.5%;
 }
+
+body {
+  font-family: 'Quattrocento Sans', sans-serif;
+  background-color: rgb(251, 253, 255);
+}
+
+h1, h2, h3, h4, h5, label {
+  font-family: 'Bree Serif', serif;
+}

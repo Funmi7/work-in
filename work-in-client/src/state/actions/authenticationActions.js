@@ -12,7 +12,7 @@ export const FETCH_USER = "FETCH_USER";
 export const FETCH_USER_FAILED = "FETCH_USER_FAILED";
 export const FETCH_USER_SUCESSFULLY = "FETCH_USER_SUCESSFULLY";
 
-const url = "http://localhost:3000/api/";
+const url = "https://random-picture-gallery.herokuapp.com/api/";
 
 export const register = (props, values) => (dispatch) => {
   dispatch({ type: SIGN_UP });
