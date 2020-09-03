@@ -9,6 +9,7 @@ import Images from "./components/images/images";
 import Login from "./components/forms/Login";
 import Headers from "./components/Headers";
 import Logout from "./components/Logout";
+import Footer from "./components/Footer";
 
 function App() {
   if (localStorage.getItem("token")) {
@@ -21,6 +22,7 @@ function App() {
         <Route exact path = "/logout" component={Logout} />
         <Redirect to="/" />
       </Switch>
+      <Footer />
       </>
     );
   }
@@ -28,8 +30,8 @@ function App() {
     <div className="App">
      <Switch>
       <Route path="/signup" component={SignUpForm} />
-      <Route exact path="/" component={Login} />
-      <Redirect to='/' />
+      <Route exact path="/login" component={Login} />
+      <Redirect to='/login' />
       </Switch>
     </div>
   );

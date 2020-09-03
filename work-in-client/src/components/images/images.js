@@ -9,6 +9,7 @@ const ImagesStyled = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 15vh;
 `;
 
 const Images = ({ errors, images, dispatch }) => {
