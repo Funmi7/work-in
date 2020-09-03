@@ -7,7 +7,8 @@ import styled from "styled-components";
 
 const ImagesStyled = styled.div`
   display: flex;
-  
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const Images = ({ errors, images, dispatch }) => {

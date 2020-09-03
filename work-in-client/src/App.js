@@ -7,15 +7,21 @@ import SignUpForm from "./components/forms/signUp";
 import UploadImage from "./components/forms/UploadImage";
 import Images from "./components/images/images";
 import Login from "./components/forms/Login";
+import Headers from "./components/Headers";
+import Logout from "./components/Logout";
 
 function App() {
   if (localStorage.getItem("token")) {
     return (
+      <>
+     <Headers />
       <Switch>
         <Route path="/upload" component={UploadImage} />
-        <Route path="/images" component={Images} />
-        <Redirect to="/images" />
+        <Route exact path="/" component={Images} />
+        <Route exact path = "/logout" component={Logout} />
+        <Redirect to="/" />
       </Switch>
+      </>
     );
   }
   return (

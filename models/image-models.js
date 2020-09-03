@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const ImageSchema = mongoose.Schema({
-  
   image: {
     type: Buffer,
   },
