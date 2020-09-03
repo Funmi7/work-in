@@ -2,10 +2,12 @@ import { combineReducers } from 'redux';
 
 import userReducer from './authenticationReducer';
 import imagesReducer from './imageReducer';
+import errorsReducer from './errorsReducer';
 
 const appReducer = combineReducers({
   userReducer,
-  imagesReducer,
+  images: imagesReducer,
+  errors: errorsReducer,
 
 });
 

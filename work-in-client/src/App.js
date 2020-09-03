@@ -4,23 +4,17 @@ import "./App.css";
 import { connect } from "react-redux";
 import { Route, NavLink, withRouter, Redirect, Switch } from "react-router-dom";
 import SignUpForm from "./components/forms/signUp";
-import HomePage from "./components/Home";
+import UploadImage from "./components/forms/UploadImage";
+import Images from "./components/images/images";
 import Login from "./components/forms/Login";
-
-
-// function withAthCheck(Component, props) {
-//   if (localStorage.getItem('payload')) {
-//     return <Component {...props} />
-//   }
-//   return <Redirect to='/' />;
-// }
 
 function App() {
   if (localStorage.getItem("token")) {
     return (
       <Switch>
-        <Route path="/feed" component={HomePage} />
-        <Redirect to="/feed" />
+        <Route path="/upload" component={UploadImage} />
+        <Route path="/images" component={Images} />
+        <Redirect to="/images" />
       </Switch>
     );
   }
