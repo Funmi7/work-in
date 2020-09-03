@@ -3,7 +3,7 @@ import axioswithAuth from "../../utils/axiosWithAuth";
 export const GET_IMAGES_SUCCESSFUL = "GET_IMAGES_SUCCESSFUL";
 export const GET_ERRORS = "GET_ERRORS";
 
-const url = "http://localhost:3000/images/";
+const url = "https://random-picture-gallery.herokuapp.com/images/";
 
 export const getErrors = (errors) => ({
   type: 'GET_ERRORS',
