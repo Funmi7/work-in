@@ -9,6 +9,7 @@ const authRouter = require("./auth/auth-router");
 const imageRouter = require("./routes/image-routers");
 const userRouter = require("./routes/users");
 
+
 server.use(cors());
 server.use(bodyParser.json());
 server.use(express.json());
@@ -22,8 +23,8 @@ server.get("/", (req, res) => {
 });
 
 mongoose.connect(
-  process.env.MONGODB_URL,
-  { useNewUrlParser: true, useUnifiedTopology: true },
+  process.env.ATLAS_CONNECTION,
+  { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true },
   () => {
     console.log("Connected to DB!");
   }
