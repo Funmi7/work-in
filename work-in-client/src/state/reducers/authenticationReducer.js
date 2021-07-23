@@ -38,6 +38,7 @@ function userReducer(state = initialState, action) {
         loginError: action.payload,
         isLoading: false,
         isLoggedIn: false,
+        user: {},
       };
     case types.SIGN_UP_ERROR:
       return {
@@ -45,6 +46,7 @@ function userReducer(state = initialState, action) {
         signUpError: action.payload,
         isLoading: false,
         isLoggedIn: false,
+        user: {}
       };
     case types.LOGOUT:
       return {
